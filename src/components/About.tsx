@@ -115,7 +115,6 @@ const About = () => {
             }}>
             .me
           </span>
-          <span className="text-emerald-400 animate-pulse">_</span>
         </h2>
 
         <div className="grid md:grid-cols-5 gap-8 mb-12">

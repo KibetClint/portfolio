@@ -31,7 +31,7 @@ const contactInfo = [
   {
     icon: Github,
     label: "github",
-    value: "github.com/KibetClint",
+    value: "@KibetClint",
     href: "https://github.com/KibetClint",
   },
 ];
@@ -112,7 +112,6 @@ const Contact = () => {
             }}>
             .touch()
           </span>
-          <span className="text-emerald-400 animate-pulse">_</span>
         </h2>
         <p className="font-mono text-white/30 text-center mb-14 max-w-xl mx-auto text-sm">
           <span className="text-emerald-400/50">{"//"}</span> Available for
@@ -204,8 +203,7 @@ const Contact = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label className="font-mono text-[10px] text-emerald-400/50 uppercase tracking-widest mb-2 block">
-                      <span className="text-white/20">const</span> name{" "}
-                      <span className="text-white/20">=</span>
+                      <span className="text-white/20"></span> name{" "}
                     </label>
                     <input
                       type="text"
@@ -220,8 +218,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="font-mono text-[10px] text-emerald-400/50 uppercase tracking-widest mb-2 block">
-                      <span className="text-white/20">const</span> email{" "}
-                      <span className="text-white/20">=</span>
+                      <span className="text-white/20"></span> email{" "}
                     </label>
                     <input
                       type="email"
@@ -238,8 +235,7 @@ const Contact = () => {
 
                 <div>
                   <label className="font-mono text-[10px] text-emerald-400/50 uppercase tracking-widest mb-2 block">
-                    <span className="text-white/20">const</span> project_type{" "}
-                    <span className="text-white/20">=</span>
+                    <span className="text-white/20"></span> project_type{" "}
                   </label>
                   <select
                     value={formData.projectType}
@@ -260,8 +256,7 @@ const Contact = () => {
 
                 <div>
                   <label className="font-mono text-[10px] text-emerald-400/50 uppercase tracking-widest mb-2 block">
-                    <span className="text-white/20">const</span> message{" "}
-                    <span className="text-white/20">=</span>
+                    <span className="text-white/20"></span> message{" "}
                   </label>
                   <textarea
                     value={formData.message}

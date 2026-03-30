@@ -91,7 +91,6 @@ const Projects = () => {
             }}>
             .projects
           </span>
-          <span className="text-emerald-400 animate-pulse">_</span>
         </h2>
         <p className="font-mono text-white/30 text-center mb-14 max-w-2xl mx-auto text-sm">
           <span className="text-emerald-400/50">{"//"}</span> From full-stack

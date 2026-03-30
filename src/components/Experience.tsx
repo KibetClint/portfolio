@@ -109,9 +109,8 @@ const Experience = () => {
               backgroundClip: "text",
               animation: "gradientShift 3s linear infinite",
             }}>
-            .log
+            .education
           </span>
-          <span className="text-emerald-400 animate-pulse">_</span>
         </h2>
 
         <div className="grid md:grid-cols-3 gap-10 max-w-5xl mx-auto">
