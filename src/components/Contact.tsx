@@ -9,6 +9,8 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 const contactInfo = [
   {
@@ -53,10 +55,30 @@ const Contact = () => {
     projectType: "",
     message: "",
   });
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setStatus("sending");
+
+    try {
+      await addDoc(collection(db, "contact_messages"), {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        projectType: formData.projectType,
+        message: formData.message.trim(),
+        createdAt: serverTimestamp(),
+        read: false,
+      });
+
+      setStatus("success");
+      setFormData({ name: "", email: "", projectType: "", message: "" });
+    } catch (err) {
+      console.error("Error sending message:", err);
+      setStatus("error");
+    }
   };
 
   const inputClass = `w-full px-4 py-3 rounded border border-emerald-500/15 bg-black/40
@@ -270,18 +292,31 @@ const Contact = () => {
                   />
                 </div>
 
+                {/* Status messages */}
+                {status === "success" && (
+                  <div className="font-mono text-xs text-emerald-400 border border-emerald-500/20 bg-emerald-500/5 rounded px-4 py-3">
+                    ✓ message.sent() — I'll get back to you soon!
+                  </div>
+                )}
+                {status === "error" && (
+                  <div className="font-mono text-xs text-red-400 border border-red-500/20 bg-red-500/5 rounded px-4 py-3">
+                    ✗ error — something went wrong. Please try again.
+                  </div>
+                )}
+
                 <button
                   type="submit"
+                  disabled={status === "sending"}
                   className="w-full inline-flex items-center justify-center gap-2 px-8 py-3.5
                     rounded font-mono font-semibold text-sm transition-all duration-300
-                    hover:scale-[1.02] active:scale-[0.98]"
+                    hover:scale-[1.02] active:scale-[0.98] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                   style={{
                     background: "linear-gradient(135deg, #00c96a, #00a8d4)",
                     color: "#050a0e",
                     boxShadow: "0 0 24px rgba(0,200,106,0.25)",
                   }}>
                   <Send className="w-4 h-4" />
-                  message.send()
+                  {status === "sending" ? "sending..." : "message.send()"}
                 </button>
               </form>
             </div>
