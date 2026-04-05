@@ -2,16 +2,14 @@ import { initializeApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyC-UmRKIXvwfV4Xf1Qp9Ns3t16YiwSCtZo",
-  authDomain: "portfolio-6a471.firebaseapp.com",
-  projectId: "portfolio-6a471",
-  storageBucket: "portfolio-6a471.firebasestorage.app",
-  messagingSenderId: "435845814367",
-  appId: "1:435845814367:web:84fb6a34d0d916672ba3ea",
-  measurementId: "G-P1E53TCPYY",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-// Prevent re-initialization on hot reloads
 const app =
   getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 export const db = getFirestore(app);
